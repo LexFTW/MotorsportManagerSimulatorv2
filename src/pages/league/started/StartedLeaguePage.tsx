@@ -37,7 +37,7 @@ export const StartedLeaguePage = () => {
             setParticipants(participantsResponse);
             setLoading(false);
         };
-        
+
         run();
     }, [leagueId, joinCode]);
 
@@ -58,7 +58,7 @@ export const StartedLeaguePage = () => {
                                 </Card.Header>
                                 <Card.Body>
                                     <p style={{ color: 'var(--color-text-muted)'}}>{league?.description}</p>
-                                    {league?.type === "PRIVATE" && (
+                                    {league?.type.toUpperCase() === "PRIVATE" && (
                                         <>
                                             <Card style={{ margin: '1rem auto' }}>
                                                 <Card.Body style={{ padding: '1rem', display: 'flex', justifyContent: 'space-between' }}>
