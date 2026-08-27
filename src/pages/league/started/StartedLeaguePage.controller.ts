@@ -11,7 +11,7 @@ export const getLeagueParticipants = async(leagueId: string): Promise<Participan
 
 export const addParticipantToLeague = async (leagueId: string, joinCode: string): Promise<void> => {
     // Logic to add participant using the joinCode
-    alert("Uniendose a la liga con el código: " + joinCode);
+    alert("Uniendose a la liga " + leagueId + " con el código: " + joinCode);
 };
 
 export const copyLeagueJoinLink = async (
