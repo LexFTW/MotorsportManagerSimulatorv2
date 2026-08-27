@@ -1,0 +1,36 @@
+.card {
+    width: 100%;
+    overflow: hidden;
+    background: #111318;
+    border: 1px solid #252932;
+    border-radius: 10px;
+    color: #f5f5f5;
+}
+
+.header,
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 52px;
+    padding: 0 18px;
+    background: #17191f;
+    border-bottom: 1px solid #252932;
+}
+
+.body,
+.card-body {
+    padding: 20px;
+}
+
+.footer,
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 14px 18px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}

@@ -1,0 +1,11 @@
+.avatarButton {
+    padding: 2px;
+}
+
+.avatarButton:hover {
+    transform: scale(1.05);
+}
+
+.avatarButton {
+    transition: transform 0.15s ease;
+}

@@ -1,0 +1,225 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    width: fit-content;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+
+    cursor: pointer;
+    user-select: none;
+
+    transition:
+        background-color 150ms ease,
+        border-color 150ms ease,
+        color 150ms ease,
+        box-shadow 150ms ease,
+        transform 100ms ease;
+}
+
+/* ========================================
+   Sizes
+   ======================================== */
+
+.button--small {
+    min-height: 36px;
+    padding: 0 0.875rem;
+
+    font-size: 0.8125rem;
+}
+
+.button--medium {
+    min-height: 42px;
+    padding: 0 1.125rem;
+
+    font-size: 0.875rem;
+}
+
+.button--large {
+    min-height: 48px;
+    padding: 0 1.5rem;
+
+    font-size: 0.9375rem;
+}
+
+/* ========================================
+   Primary
+   ======================================== */
+
+.button--primary {
+    background-color: #e10600;
+    border-color: #e10600;
+    color: #ffffff;
+}
+
+.button--primary:hover {
+    background-color: #c80500;
+    border-color: #c80500;
+}
+
+.button--primary:active {
+    background-color: #ae0400;
+    border-color: #ae0400;
+    transform: translateY(1px);
+}
+
+/* ========================================
+   Secondary
+   ======================================== */
+
+.button--secondary {
+    background-color: #252525;
+    border-color: #363636;
+    color: #ffffff;
+}
+
+.button--secondary:hover {
+    background-color: #303030;
+    border-color: #454545;
+}
+
+.button--secondary:active {
+    background-color: #1d1d1d;
+    transform: translateY(1px);
+}
+
+/* ========================================
+   Danger
+   ======================================== */
+
+.button--danger {
+    background-color: #dc2626;
+    border-color: #dc2626;
+    color: #ffffff;
+}
+
+.button--danger:hover {
+    background-color: #b91c1c;
+    border-color: #b91c1c;
+}
+
+.button--danger:active {
+    background-color: #991b1b;
+}
+
+/* ========================================
+   Ghost
+   ======================================== */
+
+.button--ghost {
+    background-color: transparent;
+    border-color: transparent;
+    color: #b5b5b5;
+}
+
+.button--ghost:hover {
+    background-color: #1f1f1f;
+    color: #ffffff;
+}
+
+/* ========================================
+   Link
+   ======================================== */
+
+.button--link {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--color-primary);
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.button--link:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+    transition: 0.2s ease;
+}
+
+/* ========================================
+   OUTLINED
+   ======================================== */
+
+.button--outlined {
+    background-color: transparent;
+}
+
+/* Primary outlined */
+
+.button--primary.button--outlined {
+    border-color: #e10600;
+    color: #e10600;
+}
+
+.button--primary.button--outlined:hover {
+    background-color: #e10600;
+    color: #ffffff;
+}
+
+/* Secondary outlined */
+
+.button--secondary.button--outlined {
+    border-color: #454545;
+    color: #ffffff;
+}
+
+.button--secondary.button--outlined:hover {
+    background-color: #252525;
+    border-color: #666666;
+}
+
+/* Danger outlined */
+
+.button--danger.button--outlined {
+    border-color: #dc2626;
+    color: #dc2626;
+}
+
+.button--danger.button--outlined:hover {
+    background-color: #dc2626;
+    color: #ffffff;
+}
+
+/* ========================================
+   Square / No border radius
+   ======================================== */
+
+.button--square {
+    border-radius: 0;
+}
+
+/* ========================================
+   Full width
+   ======================================== */
+
+.button--full {
+    width: 100%;
+}
+
+/* ========================================
+   Focus
+   ======================================== */
+
+.button:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+
+    box-shadow: 0 0 0 4px rgb(225 6 0 / 30%);
+}
+
+/* ========================================
+   Disabled
+   ======================================== */
+
+.button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}

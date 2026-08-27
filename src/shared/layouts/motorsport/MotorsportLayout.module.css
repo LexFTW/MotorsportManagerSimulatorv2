@@ -1,0 +1,104 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0 0.9rem;
+}
+
+.headerBrand {
+    min-width: 0;
+}
+
+.titleBlock {
+    min-width: 0;
+}
+
+.logo{
+    width: 150px;
+    height: 150px;
+    padding-right: 10px;
+    object-fit: contain;
+}
+
+.header h1{
+    font-family: var(--font-racing);
+    margin-bottom: 0.25rem;
+    font-size: clamp(1.25rem, 2.6vw, 2rem);
+    line-height: 1.08;
+    letter-spacing: 0.01em;
+}
+
+.header h5{
+    font-family: var(--font-racing);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+    opacity: 0.92;
+}
+
+main.layout{
+    max-height: calc(100vh - 170px);
+    overflow-y: auto;
+    padding-bottom: calc(100px + env(safe-area-inset-bottom));
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}
+
+main.layout::-webkit-scrollbar {
+    width: 6px;
+}
+
+main.layout::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+main.layout::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+main.layout:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+@media (max-width: 991px) {
+    .header {
+        align-items: flex-start;
+    }
+
+    .logo {
+        width: 112px;
+        height: 112px;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .header h5 {
+        font-size: 0.72rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .headerBrand {
+        align-items: center;
+    }
+
+    .logo {
+        width: 88px;
+        height: 88px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        padding-right: 0;
+        padding-bottom: 8px;
+    }
+}
