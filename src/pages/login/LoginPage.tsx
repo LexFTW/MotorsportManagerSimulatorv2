@@ -20,7 +20,7 @@ export const LoginPage = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
-                <Grid size={7}>
+                <Grid size={{ xs: 12, md: 7 }} >
                     <Card className={styles.card}>
                         <Card.Body>
                             <h3>Motorsport Manager Simulator 2026</h3>
@@ -60,7 +60,7 @@ export const LoginPage = () => {
                         </Card.Footer>
                     </Card>
                 </Grid>
-                <Grid size={5}></Grid>
+                <Grid size={5} sx={{ display: { xs: 'none', md: 'block' } }}></Grid>
             </Grid>
         </Box>
     );
