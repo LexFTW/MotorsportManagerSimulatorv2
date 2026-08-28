@@ -8,38 +8,68 @@ import type { LeagueResponse, ParticipantResponse } from "@/models";
 import { copyLeagueJoinLink, getLeague, getLeagueParticipants, addParticipantToLeague } from "./StartedLeaguePage.controller";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import type { RootState } from "@/app/store";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useLeagueRealtime } from "@/shared/hooks/useLeagueRealtime";
 
 export const StartedLeaguePage = () => {
+    const navigate = useNavigate();
     const location = useLocation();
     const [searchParams] = useSearchParams()
+    const { session } = useSelector((state: RootState) => state.session)
     const joinCode = searchParams.get("joinCode");
 
     const leagueId = location.pathname.split("/")[2];
 
     const [loading, setLoading] = useState(true);
-    const [league, setLeague]: [LeagueResponse | undefined, (league: LeagueResponse) => void] = useState();
-    const [participants, setParticipants]: [ParticipantResponse[] | undefined, (participants: ParticipantResponse[]) => void] = useState();
+    const [league, setLeague] = useState<LeagueResponse>();
+    const [participants, setParticipants] = useState<ParticipantResponse[]>();
 
     useEffect(() => {
         const run = async () => {
             setLoading(true);
 
-            if (joinCode) {
-                await addParticipantToLeague(leagueId, joinCode);
+            try {
+                if (joinCode && session?.user.id) {
+                    await addParticipantToLeague(
+                        leagueId,
+                        joinCode,
+                        session.user.id
+                    );
+                }
+
+                const [leagueResponse, participantsResponse] = await Promise.all([
+                    getLeague(leagueId),
+                    getLeagueParticipants(leagueId),
+                ]);
+
+                const isParticipant = participantsResponse.some(
+                    p => p.id === session?.user.id
+                );
+
+                if (!isParticipant) {
+                    // navigate("/");
+                    return;
+                }
+
+                setLeague(leagueResponse);
+                setParticipants(participantsResponse);
+            } finally {
+                setLoading(false);
             }
-
-            const [leagueResponse, participantsResponse] = await Promise.all([
-                getLeague(leagueId),
-                getLeagueParticipants(leagueId),
-            ]);
-
-            setLeague(leagueResponse);
-            setParticipants(participantsResponse);
-            setLoading(false);
         };
 
         run();
-    }, [leagueId, joinCode]);
+    }, [leagueId, joinCode, session?.user.id, navigate]);
+
+    useLeagueRealtime(leagueId, (newParticipant: ParticipantResponse) => {
+        setParticipants((prev) => {
+            if (!prev) return [newParticipant];
+            if (prev.some(p => p.id === newParticipant.id)) return prev;
+            return [...prev, newParticipant];
+        });
+    });
 
     return (
         <Box>

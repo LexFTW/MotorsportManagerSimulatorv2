@@ -1,7 +1,6 @@
 import type { PropsWithChildren } from "react"
-import { HomeDashboardPage, LoginPage, NotFoundPage } from "@pages"
+import { HomeDashboardPage, LoginPage, CreateLeaguePage, StartedLeaguePage, NotFoundPage } from "@pages"
 import { useLocation } from "react-router-dom"
-import { StartedLeaguePage } from "@/pages/league/started/StartedLeaguePage"
 import { Provider, useSelector } from "react-redux"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import { store, type RootState } from "./store"
@@ -43,6 +42,7 @@ const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
+            <Route path="/create-league" element={<PrivateRoute><MotorsportLayout><CreateLeaguePage /></MotorsportLayout></PrivateRoute>} />
             <Route path="/" element={<PrivateRoute><MotorsportLayout><HomeDashboardPage /></MotorsportLayout></PrivateRoute>} />
             <Route path="/leagues/:leagueId/started" element={<PrivateRoute><MotorsportLayout><StartedLeaguePage /></MotorsportLayout></PrivateRoute>} />
             <Route path="*" element={<NotFoundPage />} />

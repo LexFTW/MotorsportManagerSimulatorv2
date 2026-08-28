@@ -1,5 +1,5 @@
 import type { LeagueResponse, ParticipantResponse } from "@/models";
-import { getById, getParticipantsByLeagueId } from "@/shared/api/leagues";
+import { getById, getParticipantsByLeagueId, addParticipant } from "@/shared/api/leagues";
 
 export const getLeague = async (leagueId: string): Promise<LeagueResponse> => {
     return await getById(leagueId);
@@ -9,9 +9,8 @@ export const getLeagueParticipants = async(leagueId: string): Promise<Participan
     return await getParticipantsByLeagueId(leagueId);
 };
 
-export const addParticipantToLeague = async (leagueId: string, joinCode: string): Promise<void> => {
-    // Logic to add participant using the joinCode
-    alert("Uniendose a la liga " + leagueId + " con el código: " + joinCode);
+export const addParticipantToLeague = async (leagueId: string, joinCode: string, playerId: string): Promise<void> => {
+    await addParticipant(leagueId, playerId, joinCode);
 };
 
 export const copyLeagueJoinLink = async (

@@ -10,15 +10,19 @@ import Grid from "@mui/material/Grid"
 import { getMyLeagues } from "./HomeDashboard.controller"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import type { RootState } from "@/app/store"
+import { useSelector } from "react-redux"
 
 export const HomeDashboardPage = () => {
     const [leagues, setLeagues] = useState<LeagueResponse[]>([])
+    const { session } = useSelector((state: RootState) => state.session)
     const navigate = useNavigate()
 
     useEffect(() => {
         const fetchLeagues = async () => {
             try {
-                const leaguesData = await getMyLeagues()
+                const leaguesData = await getMyLeagues(session?.user.id)
+                // http://localhost:5173/leagues/55a59fc9-5163-4a6b-ba5b-2d26593e59b7/started?joinCode=4XI0O1
                 setLeagues(leaguesData)
             } catch (error) {
                 console.error("Error fetching leagues:", error)
@@ -78,7 +82,7 @@ export const HomeDashboardPage = () => {
                                 <Button
                                     variant="ghost"
                                     className={styles.createActionButton}
-                                    onClick={() => navigate("/leagues?create=true")}
+                                    onClick={() => navigate("/create-league")}
                                 >
                                     CREAR LIGA
                                     <FontAwesomeIcon icon={faArrowRight} />
