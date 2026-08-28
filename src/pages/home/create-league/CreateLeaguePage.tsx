@@ -92,9 +92,11 @@ export const CreateLeaguePage = () => {
                                         label="Máximo de jugadores"
                                         type="number"
                                         defaultValue={10}
-                                        inputProps={{
-                                            min: 2,
-                                            max: 10,
+                                        slotProps={{
+                                            htmlInput: {
+                                                min: 2,
+                                                max: 10,
+                                            },
                                         }}
                                         required
                                         size="small"
